@@ -1,0 +1,19 @@
+/* .container{
+    border:2px solid red;
+    padding: 2em;
+    display: flex;
+    background: white;
+} */
+
+.container a{
+    border:2px solid blue;
+    padding: .8em 1.5em;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    background: white;
+}
+
+.container a > i{
+    margin-right: .5em;
+}
