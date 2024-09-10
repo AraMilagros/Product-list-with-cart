@@ -6,16 +6,20 @@ import ItemDessert from '../../components/ItemDessert';
 export default function index() {
     return (
         <div className={estilos.container}>
-            {lista.map((item, i) => {
-                return (
-                    <ItemDessert key={i}
-                        urlimg={item.image.desktop}
-                        categoria={item.category}
-                        nombre={item.name}
-                        precio={item.price}
-                    />
-                )
-            })}
+            <h1>Desserts</h1>
+            <div className={estilos.containerItems}>
+                {lista.map((item, i) => {
+                    return (
+                        <ItemDessert key={i}
+                            urlimg={item.image.desktop}
+                            categoria={item.category}
+                            nombre={item.name}
+                            precio={item.price}
+                        />
+                    )
+                })}
+            </div>
         </div>
+
     )
 }

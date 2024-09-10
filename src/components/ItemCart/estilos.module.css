@@ -1,3 +1,21 @@
 .container{
     border:2px solid red;
+    border-radius: 30px;
+    width: 300px;
+    padding: .5em 2em;
+}
+
+.iconoEmpty{
+    /* border:2px solid blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+}
+
+.iconoEmpty label{
+    margin-top: .8em;
+    margin-bottom: 1.5em;
 }

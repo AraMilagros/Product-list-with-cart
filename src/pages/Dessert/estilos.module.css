@@ -1,7 +1,11 @@
 .container{
-    border:2px solid red;
+    display: flex;
+    flex-direction: column;
+}
+.containerItems{
     display: flex;
     flex-wrap: wrap;
     gap:1em;
+    justify-content: space-around;
     
 }
