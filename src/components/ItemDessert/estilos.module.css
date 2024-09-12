@@ -48,10 +48,43 @@
     border-radius: 30px;
 }
 
-.btnCart{
+.btnCartEmpty, .btnCartFull{
     background: white;
-    margin: center;
+    border:2px solid blue;
+    width: 140px;
+    height: 40px;
     position: absolute;
-    bottom: .1em;
-    z-index: 100;
+    bottom: -1em;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.cartEmpty{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cartFull{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cartFull i{
+    cursor: pointer;
+    font-size: .8em;
+    border:2px solid red;
+    padding: .3em;
+    border-radius: 50%;
+}
+
+.cartFull i:first-child{
+    margin-left: .8em;
+}
+
+.cartFull i:last-child{
+    margin-right: .8em;
 }
