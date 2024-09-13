@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import estilos from "./estilos.module.css";
+import { useCartContext } from "../../context/CartContext";
+
 
 const imagenes = require.context('./img/Desktop', true);
 
 export default function index(props) {
 
+    const { addItem } = useCartContext();
     const [contador, setContador] = useState(1);
     const [ocultar, setOcultar] = useState(false);
 
     const sumar = () => {
         setContador(contador + 1);
+        addItem({
+            nombre: props.nombre,
+            unitario: props.precio,
+            cantidad: 1,
+            total: props.precio
+        });
     }
 
     const restar = () => {
@@ -22,7 +31,16 @@ export default function index(props) {
 
     const agregarItems = () => {
         setOcultar(true);
+        console.log('valores: '+ props.nombre + ' | ' + props.precio);
+        addItem({
+            nombre: props.nombre,
+            unitario: props.precio,
+            cantidad: 1,
+            total: props.precio
+        })
+
     }
+
 
     return (
         <div className={estilos.container}>

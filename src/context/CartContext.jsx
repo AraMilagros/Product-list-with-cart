@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-
 export const CartContext = createContext();
 
-export default function ContextCart() {
+CartContext.displayName = 'CartContexto';
+
+export default function CartProvider({children}) {
     const [listaItems, setListaItems] = useState([]);
 
     return (
@@ -20,12 +21,15 @@ export function useCartContext() {
 
     useEffect(() => {
         setListaItems(listaDuplicada);
+        console.log(listaDuplicada)
     }, [listaDuplicada]);
 
 
     function addItem(item) {
         // primero se verifica que el duplicado tenga al menos un item
+        console.log("desde contexto");
         if (listaDuplicada.length == 0) {
+            console.log("agregando item a lista vacia")
             setListaDuplicada([...listaDuplicada], item);
         } else {
             // si posee al menos un item, lo siguiente es verificar si el item nuevo 
