@@ -54,5 +54,5 @@ export function useCartContext() {
         }
 
     }
-
+    return { listaItems, setListaItems, addItem }
 }
