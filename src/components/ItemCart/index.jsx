@@ -3,8 +3,7 @@ import estilos from './estilos.module.css';
 import { useCartContext } from "../../context/CartContext";
 
 import icono from './illustration-empty-cart.svg'
-export default function index(props) {
-  const [mostrar, setMostrar] = useState(false);
+export default function index() {
   const { listaItems } = useCartContext();
 
   // idea: cambiar useState cada vez que se modifique listadoItems
@@ -29,7 +28,7 @@ export default function index(props) {
               <div className={estilos.full} key={i}>
                 <div className={estilos.listItem}>
                   <div className={estilos.item}>
-                    <label>{item.name}</label>
+                    <label>{item.nombre}</label>
                     <div className={estilos.precios}>
                       <label>{item.cantidad}</label>
                       <label>{item.unitario}</label>

@@ -22,41 +22,26 @@ export function useCartContext() {
     useEffect(() => {
         setListaItems(listaDuplicada);
         console.log(listaDuplicada)
-    }, [listaDuplicada]);
+    }, [listaDuplicada, setListaItems]);
 
 
     function addItem(item) {
-        // primero se verifica que el duplicado tenga al menos un item
-        console.log("desde contexto");
-        if (listaDuplicada.length == 0) {
-            console.log("agregando item a lista vacia")
-            setListaDuplicada([...listaDuplicada], item);
-        } else {
-            // si posee al menos un item, lo siguiente es verificar si el item nuevo 
-            // no es el mismo que ya se a guardado
-            const bandera = listaDuplicada.some(obj => obj.name === item.name);
-            // en caso de ser el mismo item, lo que se hara es buscar el item guardado para aumentar la cantidad 
-            // estructura basica de listado
-            // item:{
-            //     name,
-            //     (precio)unitario,
-            //     cantidad
-            //     (precio)total
-            // }
-            if (bandera) {
-                // setListaDuplicada(listaDuplicada.map(i => (i.name === item.name ? i.cantidad + 1 : '')));
-                setListaDuplicada(
-                    listaDuplicada.map(i => (
-                        i.name === item.name ? (
-                            i.cantidad + 1,
-                            i.total = i.unitario * i.cantidad
-                        )
-                        : ''
-                    ))
-                )
-            }
-        }
+        const itemExistente = listaDuplicada.find((i) => i.name === item.name);
 
+        if(itemExistente){
+            setListaDuplicada(
+                listaDuplicada.map((i)=>
+                    i.name === item.name ?
+                    {
+                        ...i, cantidad: i.cantidad + 1, total: (i.cantidad + 1) * i.unitario
+                    }
+                    : i
+                )
+            )
+        }else{
+            console.log(item); 
+            setListaDuplicada([...listaDuplicada, item]);
+        }
     }
     return { listaItems, setListaItems, addItem }
 }
