@@ -4,10 +4,10 @@ export const CartContext = createContext();
 CartContext.displayName = 'CartContexto';
 
 export default function CartProvider({children}) {
-    const [listaItems, setListaItems] = useState([]);
-
+    const [listaItems, setListaItems] = useState([{nombre: "Waffle with Berries ", unitario: 6.50, cantidad: 1, total: 6.50}]);
+    const [totalItems, setTotalItems] = useState([]);
     return (
-        <CartContext.Provider value={{ listaItems, setListaItems }}>
+        <CartContext.Provider value={{ listaItems, setListaItems, totalItems, setTotalItems }}>
             {children}
         </CartContext.Provider>
     );
@@ -16,14 +16,33 @@ export default function CartProvider({children}) {
 
 export function useCartContext() {
     const { listaItems, setListaItems } = useContext(CartContext);
+    const { totalItems, setTotalItems } = useContext(CartContext);
+    // {nombre: "Waffle with Berries ", unitario: 6.50, cantidad: 1, total: 6.50}
     const [listaDuplicada, setListaDuplicada] = useState([]);
-    const [precioItem, setPrecioItem] = useState([]);
+    const [totalDuplicado, setTotalDuplicado] = useState([]);
+
 
     useEffect(() => {
         setListaItems(listaDuplicada);
-        console.log(listaDuplicada)
-    }, [listaDuplicada, setListaItems]);
+        setTotalItems(totalDuplicado);
+        console.log(totalItems);
+        console.log(totalItems.cantidad);
+    }, [listaDuplicada, setListaItems, setTotalDuplicado, totalDuplicado]);
 
+
+    function calcularItems(){
+        let totalCantidad = 0;
+        let totalPrecio = 0;
+        for (let index = 0; index < listaDuplicada.length; index++) {
+            totalCantidad = totalCantidad + listaDuplicada[index].cantidad;
+            totalPrecio = totalPrecio + listaDuplicada[index].total;
+        }
+        
+        setTotalDuplicado({
+            cantidad: totalCantidad,
+            precio: totalPrecio
+        });
+    }
 
     function addItem(item) {
         const itemExistente = listaDuplicada.find((i) => i.name === item.name);
@@ -36,12 +55,20 @@ export function useCartContext() {
                         ...i, cantidad: i.cantidad + 1, total: (i.cantidad + 1) * i.unitario
                     }
                     : i
-                )
+                ) 
             )
+            setTotalDuplicado(i =>({
+                cantidad: i.cantidad + 1,
+                precio: i.precio + item.unitario
+            }));
+            // calcularItems();
         }else{
-            console.log(item); 
             setListaDuplicada([...listaDuplicada, item]);
+            setTotalDuplicado({
+                cantidad: 1,
+                precio: item.unitario
+            })
         }
     }
-    return { listaItems, setListaItems, addItem }
+    return { listaItems, addItem, totalItems }
 }

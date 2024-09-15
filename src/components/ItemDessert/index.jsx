@@ -18,7 +18,7 @@ export default function index(props) {
             unitario: props.precio,
             cantidad: 1,
             total: props.precio
-        });
+        }); 
     }
 
     const restar = () => {

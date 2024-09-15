@@ -3,6 +3,7 @@
     border-radius: 30px;
     width: 300px;
     padding: .5em 2em;
+    padding-bottom: 2em;
 }
 
 .iconoEmpty{
@@ -18,4 +19,62 @@
 .iconoEmpty label{
     margin-top: .8em;
     margin-bottom: 1.5em;
+}
+
+
+.listItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1em;
+}
+
+.precios{
+    border:2px solid green;
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5em;
+}
+.precios label:first-child{
+    color: red;
+}
+
+.iconoClose{
+    cursor: pointer;
+    padding-right: .5em;
+}
+
+.precioTotal{
+    border:2px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.precioTotal label:last-child{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.note{
+    background: rgb(239, 230, 230);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1em 1.5em;
+    margin: 1em 0;
+
+}
+
+.btnConfirm{
+    border: 2px solid red;
+    border-radius: 30px;
+    padding: 1em 0;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    cursor: pointer;
 }
