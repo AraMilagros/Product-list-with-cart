@@ -25,32 +25,18 @@ export function useCartContext() {
     useEffect(() => {
         setListaItems(listaDuplicada);
         setTotalItems(totalDuplicado);
-        console.log(totalItems);
-        console.log(totalItems.cantidad);
     }, [listaDuplicada, setListaItems, setTotalDuplicado, totalDuplicado]);
 
-
-    function calcularItems(){
-        let totalCantidad = 0;
-        let totalPrecio = 0;
-        for (let index = 0; index < listaDuplicada.length; index++) {
-            totalCantidad = totalCantidad + listaDuplicada[index].cantidad;
-            totalPrecio = totalPrecio + listaDuplicada[index].total;
-        }
-        
-        setTotalDuplicado({
-            cantidad: totalCantidad,
-            precio: totalPrecio
-        });
-    }
-
-    function addItem(item) {
-        const itemExistente = listaDuplicada.find((i) => i.name === item.name);
-
+    // idea: hacer 2 funciones diferentes 
+        // una para agregar un item nuevo a la lista
+        // y otra solo para incrementar la cantidad de un producto 
+        function addItem(lista, item) {
+        const itemExistente = listaDuplicada.find((i) => i.nombre === item.nombre);
         if(itemExistente){
+
             setListaDuplicada(
                 listaDuplicada.map((i)=>
-                    i.name === item.name ?
+                    i.nombre === item.nombre ?
                     {
                         ...i, cantidad: i.cantidad + 1, total: (i.cantidad + 1) * i.unitario
                     }
@@ -61,14 +47,19 @@ export function useCartContext() {
                 cantidad: i.cantidad + 1,
                 precio: i.precio + item.unitario
             }));
-            // calcularItems();
+            console.log("item modificado")
+            console.log(listaItems)
+
         }else{
-            setListaDuplicada([...listaDuplicada, item]);
+            setListaDuplicada([...lista, item]);
             setTotalDuplicado({
                 cantidad: 1,
                 precio: item.unitario
-            })
+            });
+            console.log("nuevo items");
+            console.log(listaItems);
         }
+
     }
     return { listaItems, addItem, totalItems }
 }

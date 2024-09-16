@@ -1,6 +1,8 @@
 .container{
     border:2px solid red;
+    /* background: red; */
     border-radius: 30px;
+    /* height: 100vh; */
     width: 300px;
     padding: .5em 2em;
     padding-bottom: 2em;

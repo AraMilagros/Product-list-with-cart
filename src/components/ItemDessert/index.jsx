@@ -8,6 +8,7 @@ const imagenes = require.context('./img/Desktop', true);
 export default function index(props) {
 
     const { addItem } = useCartContext();
+    const { listaItems } = useCartContext();
     const [contador, setContador] = useState(1);
     const [ocultar, setOcultar] = useState(false);
 
@@ -32,7 +33,7 @@ export default function index(props) {
     const agregarItems = () => {
         setOcultar(true);
         console.log('valores: '+ props.nombre + ' | ' + props.precio);
-        addItem({
+        addItem(listaItems, {
             nombre: props.nombre,
             unitario: props.precio,
             cantidad: 1,
