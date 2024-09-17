@@ -11,7 +11,7 @@ export default function index() {
   return (
 
     <div className={estilos.container}>
-      <h2>A ver {((totalItems.cantidad != null) && (totalItems.cantidad != 0)) ? totalItems.cantidad : '0'}</h2>
+      <h2>A ver {((totalItems.cantidad != null) && (totalItems.cantidad != 0)) ? totalItems.cantidad : 0}</h2>
 
       {listaItems.length === 0 ?
         <div className={estilos.iconoEmpty}>
@@ -46,7 +46,7 @@ export default function index() {
 
           <div className={estilos.precioTotal}>
             <label>Order Total</label>
-            <label>{((totalItems.precio != null) && (totalItems.precio != 0)) ? totalItems.precio : '0'}</label>
+            <label>{((totalItems.precio != null) && (totalItems.precio != 0)) ? totalItems.precio : 0}</label>
           </div>
           <div className={estilos.note}>
             <img src={tree} alt="tree" />

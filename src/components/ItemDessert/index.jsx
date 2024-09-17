@@ -8,18 +8,25 @@ const imagenes = require.context('./img/Desktop', true);
 export default function index(props) {
 
     const { addItem } = useCartContext();
+    const { addCantidad } = useCartContext();
     const { listaItems } = useCartContext();
     const [contador, setContador] = useState(1);
     const [ocultar, setOcultar] = useState(false);
 
     const sumar = () => {
         setContador(contador + 1);
-        addItem({
+        // addItem({
+        //     nombre: props.nombre,
+        //     unitario: props.precio,
+        //     cantidad: 1,
+        //     total: props.precio
+        // }); 
+        addCantidad(listaItems, {
             nombre: props.nombre,
             unitario: props.precio,
             cantidad: 1,
             total: props.precio
-        }); 
+        })
     }
 
     const restar = () => {

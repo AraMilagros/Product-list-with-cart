@@ -3,8 +3,8 @@ export const CartContext = createContext();
 
 CartContext.displayName = 'CartContexto';
 
-export default function CartProvider({children}) {
-    const [listaItems, setListaItems] = useState([{nombre: "Waffle with Berries ", unitario: 6.50, cantidad: 1, total: 6.50}]);
+export default function CartProvider({ children }) {
+    const [listaItems, setListaItems] = useState([{ nombre: "Waffle with Berries ", unitario: 6.50, cantidad: 1, total: 6.50 }]);
     const [totalItems, setTotalItems] = useState([]);
     return (
         <CartContext.Provider value={{ listaItems, setListaItems, totalItems, setTotalItems }}>
@@ -25,41 +25,29 @@ export function useCartContext() {
     useEffect(() => {
         setListaItems(listaDuplicada);
         setTotalItems(totalDuplicado);
+        console.log("desde useefect ", totalItems)
     }, [listaDuplicada, setListaItems, setTotalDuplicado, totalDuplicado]);
 
-    // idea: hacer 2 funciones diferentes 
-        // una para agregar un item nuevo a la lista
-        // y otra solo para incrementar la cantidad de un producto 
-        function addItem(lista, item) {
-        const itemExistente = listaDuplicada.find((i) => i.nombre === item.nombre);
-        if(itemExistente){
-
-            setListaDuplicada(
-                listaDuplicada.map((i)=>
-                    i.nombre === item.nombre ?
-                    {
-                        ...i, cantidad: i.cantidad + 1, total: (i.cantidad + 1) * i.unitario
-                    }
-                    : i
-                ) 
+    function addCantidad(lista, item) {
+        // dentro de setListaDuplicada se hara un map 
+        // donde por cada elemento se preguntara si su atributo nombre es igual al atributo nombre del item pasado
+        // en caso de ser verdadero, a ese elemento i se le modificara los atributos cantidad y total 
+        setListaDuplicada(
+            lista.map((i)=>
+                i.nombre === item.nombre ?
+                {
+                    ...i, cantidad: i.cantidad + 1,
+                    total: (i.cantidad + 1) * i.unitario
+                } : i 
             )
-            setTotalDuplicado(i =>({
-                cantidad: i.cantidad + 1,
-                precio: i.precio + item.unitario
-            }));
-            console.log("item modificado")
-            console.log(listaItems)
-
-        }else{
-            setListaDuplicada([...lista, item]);
-            setTotalDuplicado({
-                cantidad: 1,
-                precio: item.unitario
-            });
-            console.log("nuevo items");
-            console.log(listaItems);
-        }
-
+        )
     }
-    return { listaItems, addItem, totalItems }
+
+    function addItem(lista, item) {
+        setListaDuplicada([...lista, item]);
+    }
+
+
+
+    return { listaItems, addItem, addCantidad, totalItems }
 }
