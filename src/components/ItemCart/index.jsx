@@ -5,7 +5,6 @@ import { useCartContext } from "../../context/CartContext";
 import icono from './illustration-empty-cart.svg'
 import tree from './icon-carbon-neutral.svg';
 export default function index() {
-  // const { listaItems } = useCartContext();
   const { listaItems,totalItems, removeItem } = useCartContext();
 
 

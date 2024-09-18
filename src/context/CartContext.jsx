@@ -4,8 +4,9 @@ export const CartContext = createContext();
 CartContext.displayName = 'CartContexto';
 
 export default function CartProvider({ children }) {
-    const [listaItems, setListaItems] = useState([{ nombre: "Waffle with Berries ", unitario: 6.50, cantidad: 1, total: 6.50 }]);
+    const [listaItems, setListaItems] = useState([]);
     const [totalItems, setTotalItems] = useState([]);
+
     return (
         <CartContext.Provider value={{ listaItems, setListaItems, totalItems, setTotalItems }}>
             {children}
@@ -17,7 +18,7 @@ export default function CartProvider({ children }) {
 export function useCartContext() {
     const { listaItems, setListaItems } = useContext(CartContext);
     const { totalItems, setTotalItems } = useContext(CartContext);
-    // {nombre: "Waffle with Berries ", unitario: 6.50, cantidad: 1, total: 6.50}
+
     const [listaDuplicada, setListaDuplicada] = useState([]);
     const [totalDuplicado, setTotalDuplicado] = useState([]);
 

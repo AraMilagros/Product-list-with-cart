@@ -34,7 +34,7 @@ export default function index(props) {
         actualizarImg();
         window.addEventListener('resize', actualizarImg);
         return () => window.removeEventListener('resize', actualizarImg);
-    })
+    });
 
     const sumar = () => {
         setContador(contador + 1);
@@ -50,12 +50,18 @@ export default function index(props) {
 
         if(contador == 1) {
             setOcultar(false);
-            removeItem(listaItems, props.nombre);
+            
+            let item={
+                nombre: props.nombre,
+                cantidad: props.cantidad,
+                unitario: props.unitario
+            }
+            removeItem(listaItems, item);
         }
         if(contador > 1){
             removeCantidad(listaItems, props.nombre);
         }
-        setContador(contador - 1);
+        setContador(1);
     }
 
     const agregarItems = () => {
@@ -65,7 +71,8 @@ export default function index(props) {
             nombre: props.nombre,
             unitario: props.precio,
             cantidad: 1,
-            total: props.precio
+            total: props.precio,
+            urlimg: props.urlimg
         },{
             cantidad: 1,
             precio: props.precio

@@ -11,7 +11,7 @@ export default function index() {
                 {lista.map((item, i) => {
                     return (
                         <ItemDessert key={i}
-                            urlimg={item.image.img}
+                            urlimg={item.image}
                             categoria={item.category}
                             nombre={item.name}
                             precio={item.price}
