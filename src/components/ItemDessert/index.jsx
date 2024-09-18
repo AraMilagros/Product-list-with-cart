@@ -3,24 +3,41 @@ import estilos from "./estilos.module.css";
 import { useCartContext } from "../../context/CartContext";
 
 
-const imagenes = require.context('./img/Desktop', true);
-
 export default function index(props) {
 
-    const { addItem } = useCartContext();
-    const { addCantidad } = useCartContext();
-    const { listaItems } = useCartContext();
+    const { addItem, addCantidad, listaItems, removeItem, removeCantidad } = useCartContext();
     const [contador, setContador] = useState(1);
     const [ocultar, setOcultar] = useState(false);
+    const [imgSrc, setImgSrc] = useState('');
+
+
+    const obtenerImagen = (nombreImg) =>{
+        const width = window.innerWidth;
+        let carpeta;
+
+        if(width <= 600){
+            carpeta = 'Mobile';
+        }else if(width > 600 && width <= 1024){
+            carpeta = 'Tablet';
+        }else{
+            carpeta = 'Desktop';
+        }
+
+        return require(`./img/${carpeta}/${nombreImg}`);
+    };
+
+    useEffect(()=>{
+        const actualizarImg = () => {
+            setImgSrc(obtenerImagen(props.urlimg));
+        };
+
+        actualizarImg();
+        window.addEventListener('resize', actualizarImg);
+        return () => window.removeEventListener('resize', actualizarImg);
+    })
 
     const sumar = () => {
         setContador(contador + 1);
-        // addItem({
-        //     nombre: props.nombre,
-        //     unitario: props.precio,
-        //     cantidad: 1,
-        //     total: props.precio
-        // }); 
         addCantidad(listaItems, {
             nombre: props.nombre,
             unitario: props.precio,
@@ -32,7 +49,11 @@ export default function index(props) {
     const restar = () => {
 
         if(contador == 1) {
-            setOcultar(false)
+            setOcultar(false);
+            removeItem(listaItems, props.nombre);
+        }
+        if(contador > 1){
+            removeCantidad(listaItems, props.nombre);
         }
         setContador(contador - 1);
     }
@@ -45,17 +66,19 @@ export default function index(props) {
             unitario: props.precio,
             cantidad: 1,
             total: props.precio
+        },{
+            cantidad: 1,
+            precio: props.precio
         })
 
     }
-
 
     return (
         <div className={estilos.container}>
 
             <div className={estilos.containerImg}>
                 <div className={estilos.imagen}>
-                    <img src={imagenes(props.urlimg)} alt="" />
+                    <img src={imgSrc} alt={props.nombre} />
                 </div>
                 {!ocultar && (
                     <div className={estilos.btnCartEmpty} onClick={agregarItems}>

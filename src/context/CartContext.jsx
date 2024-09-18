@@ -25,7 +25,6 @@ export function useCartContext() {
     useEffect(() => {
         setListaItems(listaDuplicada);
         setTotalItems(totalDuplicado);
-        console.log("desde useefect ", totalItems)
     }, [listaDuplicada, setListaItems, setTotalDuplicado, totalDuplicado]);
 
     function addCantidad(lista, item) {
@@ -33,21 +32,56 @@ export function useCartContext() {
         // donde por cada elemento se preguntara si su atributo nombre es igual al atributo nombre del item pasado
         // en caso de ser verdadero, a ese elemento i se le modificara los atributos cantidad y total 
         setListaDuplicada(
-            lista.map((i)=>
+            lista.map((i) =>
                 i.nombre === item.nombre ?
-                {
-                    ...i, cantidad: i.cantidad + 1,
-                    total: (i.cantidad + 1) * i.unitario
-                } : i 
+                    {
+                        ...i, cantidad: i.cantidad + 1,
+                        total: (i.cantidad + 1) * i.unitario
+                    } : i
+            )
+        )
+        sumarTotales(item);
+    }
+
+    function removeCantidad(lista, nombre) {
+        setListaDuplicada(
+            lista.map((i) =>
+                i.nombre === nombre ?
+                    {
+                        ...i, cantidad: i.cantidad - 1,
+                        total: (i.cantidad - 1) * i.unitario
+                    } : i
             )
         )
     }
 
-    function addItem(lista, item) {
+    function addItem(lista, item, total) {
         setListaDuplicada([...lista, item]);
+        lista.length == 0 ? setTotalDuplicado(total) : sumarTotales(item);
     }
 
+    function removeItem(lista, item) {
+        const actualizar = lista.filter((i) => i.nombre !== item.nombre);
+        setListaDuplicada(actualizar);
+        console.log("desde removeItem", item)
+        restarTotales(item);
+    }
 
+    function sumarTotales(item) {
+        setTotalDuplicado((previo) => ({
+            ...previo,
+            cantidad: totalItems.cantidad + 1,
+            precio: totalItems.precio + item.unitario
+        }));
+    }
 
-    return { listaItems, addItem, addCantidad, totalItems }
+    function restarTotales(item){
+        setTotalDuplicado((previo) => ({
+            ...previo,
+            cantidad: totalItems.cantidad - item.cantidad,
+            precio: totalItems.precio - (item.unitario * item.cantidad)
+        }));
+    }
+
+    return { listaItems, addItem, addCantidad, totalItems, removeItem, removeCantidad }
 }
