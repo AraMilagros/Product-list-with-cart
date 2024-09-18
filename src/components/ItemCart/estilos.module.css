@@ -6,6 +6,7 @@
     width: 300px;
     padding: .5em 2em;
     padding-bottom: 2em;
+    position: relative;
 }
 
 .iconoEmpty{
