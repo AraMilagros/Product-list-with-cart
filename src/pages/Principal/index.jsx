@@ -11,7 +11,6 @@ export default function index() {
             <CartProvider>
                 <Desserts />
                 <Cart />
-                {/* <Modal /> */}
             </CartProvider>
 
         </div>

@@ -5,11 +5,10 @@ import { useCartContext } from "../../context/CartContext";
 
 export default function index(props) {
 
-    const { addItem, addCantidad, listaItems, removeItem, removeCantidad } = useCartContext();
+    const { addItem, addCantidad, listaItems, removeItem, removeCantidad, listaCart } = useCartContext();
     const [contador, setContador] = useState(1);
     const [ocultar, setOcultar] = useState(false);
     const [imgSrc, setImgSrc] = useState('');
-
 
     const obtenerImagen = (nombreImg) =>{
         const width = window.innerWidth;
@@ -38,12 +37,12 @@ export default function index(props) {
 
     const sumar = () => {
         setContador(contador + 1);
-        addCantidad(listaItems, {
-            nombre: props.nombre,
-            unitario: props.precio,
-            cantidad: 1,
-            total: props.precio
-        })
+        // addCantidad(listaCart, {
+        //     nombre: props.nombre,
+        //     unitario: props.precio,
+        //     cantidad: 1,
+        //     total: props.precio
+        // })
     }
 
     const restar = () => {
@@ -56,23 +55,22 @@ export default function index(props) {
                 cantidad: props.cantidad,
                 unitario: props.unitario
             }
-            removeItem(listaItems, item);
+            removeItem(listaCart, item);
         }
         if(contador > 1){
-            removeCantidad(listaItems, props.nombre);
+            removeCantidad(listaCart, props.nombre);
         }
         setContador(1);
     }
 
     const agregarItems = () => {
-        setOcultar(true);
-        console.log('valores: '+ props.nombre + ' | ' + props.precio);
-        addItem(listaItems, {
+        addItem(listaCart, {
             nombre: props.nombre,
             unitario: props.precio,
             cantidad: 1,
             total: props.precio,
-            urlimg: props.urlimg
+            urlimg: props.urlimg,
+            isCart: props.isCart
         },{
             cantidad: 1,
             precio: props.precio
@@ -87,7 +85,7 @@ export default function index(props) {
                 <div className={estilos.imagen}>
                     <img src={imgSrc} alt={props.nombre} />
                 </div>
-                {!ocultar && (
+                {!props.isCart && (
                     <div className={estilos.btnCartEmpty} onClick={agregarItems}>
                         <div className={estilos.cartEmpty}>
                             <i className="fa-solid fa-cart-plus"></i>
@@ -96,7 +94,7 @@ export default function index(props) {
                     </div>
                 )}
 
-                {ocultar && (
+                {props.isCart && (
                     <div className={estilos.btnCartFull} >
                         <div className={estilos.cartFull}>
                             <i onClick={restar} className="fa-solid fa-minus"></i>

@@ -6,20 +6,20 @@ import ModalConfirm from '../ModalConfirm';
 import icono from './illustration-empty-cart.svg'
 import tree from './icon-carbon-neutral.svg';
 export default function index() {
-  const { listaItems, totalItems, removeItem } = useCartContext();
+  const { listaCart, totalItems, removeItem } = useCartContext();
 
   const [openModal, setOpenModal] = useState(false);
 
   const remover = (nombre, cantidad, unitario) => {
-    removeItem(listaItems, { nombre, cantidad, unitario });
+    removeItem(listaCart, { nombre, cantidad, unitario });
   }
 
   return (
     <>
       <div className={estilos.container}>
-        <h2>Your Cart ({((totalItems.cantidad != null) && (totalItems.cantidad != 0)) ? totalItems.cantidad : 0})</h2>
+        {/* <h2>Your Cart ({((totalItems.cantidad != null) && (totalItems.cantidad != 0)) ? totalItems.cantidad : 0})</h2> */}
 
-        {listaItems.length === 0 ?
+        {listaCart.length === 0 ?
           <div className={estilos.iconoEmpty}>
             <img src={icono} alt="icon-empty-cart" />
             <label>Your added items will appear here</label>
@@ -27,9 +27,9 @@ export default function index() {
           : ''
         }
 
-        {listaItems.length != 0 ?
+        {listaCart.length != 0 ?
           <div className={estilos.full}>
-            {listaItems.map((item, i) => {
+            {listaCart.map((item, i) => {
               return (
                 <div key={i}>
 
@@ -52,7 +52,7 @@ export default function index() {
 
             <div className={estilos.precioTotal}>
               <label>Order Total</label>
-              <label>$ {((totalItems.precio != null) && (totalItems.precio != 0)) ? totalItems.precio : 0}</label>
+              {/* <label>$ {((totalItems.precio != null) && (totalItems.precio != 0)) ? totalItems.precio : 0}</label> */}
             </div>
             <div className={estilos.note}>
               <img src={tree} alt="tree" />
@@ -65,7 +65,7 @@ export default function index() {
 
       </div>
 
-        {openModal && <ModalConfirm closeModal={setOpenModal} lista={listaItems} total={totalItems.precio} />}
+        {openModal && <ModalConfirm closeModal={setOpenModal} lista={listaCart} total={totalItems.precio} />}
 
     </>
   )
