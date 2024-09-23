@@ -37,45 +37,51 @@ export default function index(props) {
 
     const sumar = () => {
         setContador(contador + 1);
-        // addCantidad(listaCart, {
-        //     nombre: props.nombre,
-        //     unitario: props.precio,
-        //     cantidad: 1,
-        //     total: props.precio
-        // })
+        let item = {
+            nombre: props.nombre,
+            unitario: props.precio,
+            cantidad: 1,
+            total: props.precio
+        }
+        addCantidad(listaCart, item)
     }
 
     const restar = () => {
-
+        let item={
+            nombre: props.nombre,
+            cantidad: props.cantidad,
+            unitario: props.unitario
+        }
         if(contador == 1) {
-            setOcultar(false);
-            
-            let item={
-                nombre: props.nombre,
-                cantidad: props.cantidad,
-                unitario: props.unitario
-            }
-            removeItem(listaCart, item);
+            // setOcultar(false);
+            removeItem(listaCart, item, false);
         }
         if(contador > 1){
-            removeCantidad(listaCart, props.nombre);
+            removeCantidad(listaCart, item);
         }
-        setContador(1);
+        // setContador(1);
     }
 
     const agregarItems = () => {
-        addItem(listaCart, {
+        let item = {
             nombre: props.nombre,
             unitario: props.precio,
             cantidad: 1,
             total: props.precio,
             urlimg: props.urlimg,
             isCart: props.isCart
-        },{
+        }
+        let precios = {
             cantidad: 1,
             precio: props.precio
-        })
+        }
 
+        if(contador > 1 ){
+            console.log('no esta inicializado')
+            setContador(1)
+        }
+
+        addItem(listaCart, item, precios, true);
     }
 
     return (

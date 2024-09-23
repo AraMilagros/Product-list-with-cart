@@ -11,13 +11,20 @@ export default function index() {
   const [openModal, setOpenModal] = useState(false);
 
   const remover = (nombre, cantidad, unitario) => {
-    removeItem(listaCart, { nombre, cantidad, unitario });
+    let item = {
+      nombre: nombre,
+      cantidad: cantidad,
+      unitario: unitario
+    }
+    console.log(item);
+    removeItem(listaCart, item, false)
+    
   }
 
   return (
     <>
       <div className={estilos.container}>
-        {/* <h2>Your Cart ({((totalItems.cantidad != null) && (totalItems.cantidad != 0)) ? totalItems.cantidad : 0})</h2> */}
+        <h2>Your Cart ({((totalItems.cantidad != null) && (totalItems.cantidad != 0)) ? totalItems.cantidad : 0})</h2>
 
         {listaCart.length === 0 ?
           <div className={estilos.iconoEmpty}>
@@ -52,7 +59,7 @@ export default function index() {
 
             <div className={estilos.precioTotal}>
               <label>Order Total</label>
-              {/* <label>$ {((totalItems.precio != null) && (totalItems.precio != 0)) ? totalItems.precio : 0}</label> */}
+              <label>$ {((totalItems.precio != null) && (totalItems.precio != 0)) ? totalItems.precio : 0}</label>
             </div>
             <div className={estilos.note}>
               <img src={tree} alt="tree" />
