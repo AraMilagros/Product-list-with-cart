@@ -48,11 +48,16 @@ export function useCartContext() {
     }
 
     function restarTotales(item) {
+        // setTotalDuplicado((previo) => ({
+        //     ...previo,
+        //     cantidad: totalItems.cantidad - item.cantidad,
+        //     precio: totalItems.precio - (item.unitario * item.cantidad)
+        // }));
         setTotalDuplicado((previo) => ({
             ...previo,
-            cantidad: totalItems.cantidad - item.cantidad,
+            cantidad: totalItems.cantidad - 1,
             precio: totalItems.precio - (item.unitario * item.cantidad)
-        }));
+        }))
     }
 
     function cambiarIsCart(nombre, bandera) {
@@ -74,12 +79,13 @@ export function useCartContext() {
             sumarTotales(item)
         }
         cambiarIsCart(item.nombre, bandera)
+
     }
 
     function removeItem(lista, item, bandera) {
         const actualizar = lista.filter((i) => i.nombre !== item.nombre);
         setCartDuplicada(actualizar);
-        restarTotales(item)
+        restarTotales(item);
         cambiarIsCart(item.nombre, bandera);
     }
 
@@ -91,9 +97,10 @@ export function useCartContext() {
                     {
                         ...i, cantidad: i.cantidad + 1,
                         total: (i.cantidad + 1) * i.unitario
-                    } : i
+                    } : console.log(i)
             )
         )
+
         sumarTotales(item);
     }
 

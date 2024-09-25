@@ -1,4 +1,62 @@
 .container{
-    border:2px solid red;
     margin-top: 1em;
+    flex: 0 0 25%;
+    height: max-content;
+    padding: 1.5em;
+    background: white;
+    border-radius: 30px;
+}
+
+.container h2{
+    color: rgb(199, 62, 62);
+}
+
+.iconoEmpty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: 1.5em 0;
+}
+
+.iconoEmpty label{
+    margin-top: .8em;
+    color: gray;
+}
+
+.precioTotal{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.precioTotal label:last-child{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.note{
+    background: rgb(239, 230, 230);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1em 1.5em;
+    margin: 1em 0;
+}
+
+.btnConfirm{
+    border-radius: 30px;
+    padding: 1em 0;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    cursor: pointer;
+    background: rgb(204, 83, 83);
+    color: white;
+}
+
+.btnConfirm:hover{
+    background: rgb(199, 62, 62);
 }

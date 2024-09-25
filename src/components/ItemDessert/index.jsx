@@ -7,7 +7,7 @@ export default function index(props) {
 
     const { addItem, addCantidad, listaItems, removeItem, removeCantidad, listaCart } = useCartContext();
     const [contador, setContador] = useState(1);
-    const [ocultar, setOcultar] = useState(false);
+    // const [ocultar, setOcultar] = useState(false);
     const [imgSrc, setImgSrc] = useState('');
 
     const obtenerImagen = (nombreImg) =>{
@@ -41,7 +41,8 @@ export default function index(props) {
             nombre: props.nombre,
             unitario: props.precio,
             cantidad: 1,
-            total: props.precio
+            total: props.precio,
+            urlimg: props.urlimg
         }
         addCantidad(listaCart, item)
     }
@@ -49,17 +50,20 @@ export default function index(props) {
     const restar = () => {
         let item={
             nombre: props.nombre,
-            cantidad: props.cantidad,
-            unitario: props.unitario
+            unitario: props.precio,
+            cantidad: 1,
+            total: props.precio,
+            urlimg: props.urlimg
         }
-        if(contador == 1) {
-            // setOcultar(false);
-            removeItem(listaCart, item, false);
-        }
-        if(contador > 1){
-            removeCantidad(listaCart, item);
-        }
-        // setContador(1);
+        
+        // if(contador == 1) {
+        //     // setOcultar(false);
+        //     removeItem(listaCart, item, false);
+        // }
+        // if(contador > 1){
+        //     removeCantidad(listaCart, item);
+        //     setContador(contador - 1);
+        // }
     }
 
     const agregarItems = () => {
@@ -68,8 +72,7 @@ export default function index(props) {
             unitario: props.precio,
             cantidad: 1,
             total: props.precio,
-            urlimg: props.urlimg,
-            isCart: props.isCart
+            urlimg: props.urlimg
         }
         let precios = {
             cantidad: 1,
@@ -77,7 +80,6 @@ export default function index(props) {
         }
 
         if(contador > 1 ){
-            console.log('no esta inicializado')
             setContador(1)
         }
 

@@ -1,83 +1,39 @@
 .container{
-    border:2px solid red;
-    /* background: red; */
-    border-radius: 30px;
-    /* height: 100vh; */
-    width: 300px;
-    padding: .5em 2em;
-    padding-bottom: 2em;
-    position: relative;
-}
-
-.iconoEmpty{
-    /* border:2px solid blue; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap:1em;
-}
-
-.iconoEmpty label{
-    margin-top: .8em;
-    margin-bottom: 1.5em;
-}
-
-
-.listItem{
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid gray;
     padding-bottom: 1em;
+    margin-top: 1.5em;
+    /* margin-bottom: .8em; */
 }
 
 .precios{
-    border:2px solid green;
-    width: 130px;
+    width: 150px;
     display: flex;
     justify-content: space-between;
     margin-top: .5em;
 }
+
+.precios label{
+    color: gray;
+}
+
 .precios label:first-child{
     color: red;
 }
 
+.precios label:last-child{
+    color: maroon
+}
+
 .iconoClose{
-    cursor: pointer;
-    padding-right: .5em;
+    cursor:pointer;
+    padding-left: .5em;
+    color: gray;
 }
 
-.precioTotal{
-    border:2px solid red;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1em 0;
+.iconoClose:hover{
+    color: black;
 }
 
-.precioTotal label:last-child{
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.note{
-    background: rgb(239, 230, 230);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 1em 1.5em;
-    margin: 1em 0;
-
-}
-
-.btnConfirm{
-    border: 2px solid red;
-    border-radius: 30px;
-    padding: 1em 0;
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    cursor: pointer;
-}

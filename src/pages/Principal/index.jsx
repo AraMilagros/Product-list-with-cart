@@ -1,18 +1,18 @@
 import React from 'react'
-import estilos from './estilos.module.css';
+import { CarritoProvider } from '../../context/CartCotext'
+import Producto from '../Producto';
+import Carrito from '../Cart';
 
-import CartProvider from '../../context/CartContext';
-import Desserts from '../Dessert';
-import Cart from '../Cart';
+import estilos from './estilos.module.css';
 
 export default function index() {
     return (
         <div className={estilos.container}>
-            <CartProvider>
-                <Desserts />
-                <Cart />
-            </CartProvider>
-
+            <CarritoProvider>
+                <Producto />
+                <Carrito />
+            </CarritoProvider>
         </div>
+
     )
 }

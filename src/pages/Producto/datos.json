@@ -3,63 +3,54 @@
         "image": "image-waffle.jpg",
         "name": "Waffle with Berries",
         "category": "Waffle",
-        "price": 6.50,
-        "isCart": false
+        "price": 6.50
     },
     {
         "image": "image-creme-brulee.jpg",
         "name": "Vanilla Bean Crème Brûlée",
         "category": "Crème Brûlée",
-        "price": 7.00,
-        "isCart": false
+        "price": 7.00
     },
     {
         "image": "image-macaron.jpg",
         "name": "Macaron Mix of Five",
         "category": "Macaron",
-        "price": 8.00,
-        "isCart": false
+        "price": 8.00
     },
     {
         "image": "image-tiramisu.jpg",
         "name": "Classic Tiramisu",
         "category": "Tiramisu",
-        "price": 5.50,
-        "isCart": false
+        "price": 5.50
     },
     {
         "image": "image-baklava.jpg",
         "name": "Pistachio Baklava",
         "category": "Baklava",
-        "price": 4.00,
-        "isCart": false
+        "price": 4.00
     },
     {
         "image": "image-meringue.jpg",
         "name": "Lemon Meringue Pie",
         "category": "Pie",
-        "price": 5.00,
-        "isCart": false
+        "price": 5.00
     },
     {
         "image": "image-cake.jpg",
         "name": "Red Velvet Cake",
         "category": "Cake",
-        "price": 4.50,
-        "isCart": false
+        "price": 4.50
     },
     {
         "image": "image-brownie.jpg",
         "name": "Salted Caramel Brownie",
         "category": "Brownie",
-        "price": 4.50,
-        "isCart": false
+        "price": 4.50
     },
     {
         "image": "image-panna-cotta.jpg",
         "name": "Vanilla Panna Cotta",
         "category": "Panna Cotta",
-        "price": 6.50,
-        "isCart": false
+        "price": 6.50
     }
 ]
