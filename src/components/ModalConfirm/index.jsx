@@ -1,12 +1,14 @@
 import React from 'react'
 import estilos from './estilos.module.css';
 // import { useCartContext } from "../../context/CartContext";
-
-const imagen = require.context('./Mini', true);
+import { useCarrito } from '../../context/CartCotext';
+const carpeta = require.context('./Mini', true);
 
 export default function index(props) {
-
+    const { carrito } = useCarrito();
     // const { listaItems } = useCartContext();
+    const totalPrecio = Object.values(carrito)
+    .reduce((precio, producto) => precio + (producto.precio * producto.cantidad), 0);
 
     return (
         <>
@@ -17,32 +19,34 @@ export default function index(props) {
                     <h2>Order Confirmed</h2>
                     <label>We hope you enjoy your food!</label>
                 </div>
-
-                {props.lista.map((item, i) => {
-                    return (
-                        <div className={estilos.itemFood} key={i}>
-                            <div className={estilos.detalle}>
-                                <div className={estilos.imagen}>
-                                    <img src={imagen(`./${item.urlimg}`)} alt={item.nombre} />
-                                </div>
-                                <div className={estilos.texto}>
-                                    <label>{item.nombre}</label>
-                                    <div className={estilos.precioCantidad}>
-                                        <label>{`${item.cantidad}x`}</label>
-                                        <label>{`@ $${item.unitario}`}</label>
+                <div className={estilos.containerItemFood}>
+                    {
+                        Object.entries(carrito).map(([id, { cantidad, nombre, precio, imagen }]) => (
+                            <div className={estilos.itemFood} key={id}>
+                                <div className={estilos.detalle}>
+                                    <div className={estilos.imagen}>
+                                        <img src={carpeta(`./${imagen}`)} alt={nombre} />
+                                    </div>
+                                    <div className={estilos.texto}>
+                                        <label>{nombre}</label>
+                                        <div className={estilos.precioCantidad}>
+                                            <label>{`${cantidad}x`}</label>
+                                            <label>{`@ $${precio}`}</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className={estilos.precioUnitarioTotal}>
+                                    <label>${precio}</label>
+                                </div>
                             </div>
-                            <div className={estilos.precioUnitarioTotal}>
-                                <label>`$ ${item.total}`</label>
-                            </div>
-                        </div>
-                    )
-                })}
+                        ))
+                    }
 
-                <div className={estilos.orderTotal}>
-                    <label>Order Total</label>
-                    <label>{props.total}</label>
+                    <div className={estilos.orderTotal}>
+                        <label>Order Total</label>
+                        <label>$ {totalPrecio}</label>
+                    </div>
+
                 </div>
 
                 <a className={estilos.btnFinalizar} onClick={() => props.closeModal(false)}>Start New Order</a>

@@ -7,10 +7,10 @@ export const useCarrito = () => useContext(CarritoContext);
 export const CarritoProvider = ({ children }) => {
     const [carrito, setCarrito] = useState([]);
 
-    const agregarAlCarrito = (id, cantidad, nombre, categoria, precio) => {
+    const agregarAlCarrito = (id, cantidad, nombre, categoria, precio, imagen) => {
         setCarrito((previo) => ({
             ...previo,
-            [id]: { cantidad, nombre, categoria, precio },
+            [id]: { cantidad, nombre, categoria, precio, imagen },
         }));
     };
 

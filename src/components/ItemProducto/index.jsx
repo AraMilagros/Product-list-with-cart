@@ -42,18 +42,18 @@ export default function index(props) {
 
     const agregar = () => {
         setCantidad(1);
-        agregarAlCarrito(props.id, 1, props.nombre, props.categoria, props.precio);
+        agregarAlCarrito(props.id, 1, props.nombre, props.categoria, props.precio, props.imagen);
     }
 
     const incrementar = () => {
         setCantidad(cantidad + 1);
-        agregarAlCarrito(props.id, cantidad + 1, props.nombre, props.categoria, props.precio);
+        agregarAlCarrito(props.id, cantidad + 1, props.nombre, props.categoria, props.precio, props.imagen);
     };
 
     const decrementar = () => {
         if (cantidad > 1) {
             setCantidad(cantidad - 1);
-            agregarAlCarrito(props.id, cantidad - 1, props.nombre, props.categoria, props.precio);
+            agregarAlCarrito(props.id, cantidad - 1, props.nombre, props.categoria, props.precio, props.imagen);
 
         } else {
             setCantidad(0);
