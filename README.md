@@ -14,15 +14,6 @@ Users should be able to:
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
-### Screenshot
-
-- Captura de vista desktop
-![](./src/design/Captura%20de%20pantalla_27-9-2024_112421_localhost.jpeg)
-
-- Captura de vista mobile
-![](./src/design/Captura%20de%20pantalla_27-9-2024_11251_localhost.jpeg)
-
-
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
@@ -42,3 +33,16 @@ Users should be able to:
 - Website - [Add your name here](https://www.your-site.com)
 - Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
 - Twitter - [@yourusername](https://www.twitter.com/yourusername)
+
+
+### Screenshot
+
+- Captura de vista desktop
+![](./src/design/Captura%20de%20pantalla_27-9-2024_112421_localhost.jpeg)
+
+- Captura de vista mobile
+- 
+![](./src/design/Captura%20de%20pantalla_27-9-2024_11251_localhost.jpeg)
+
+
+
