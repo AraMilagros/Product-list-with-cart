@@ -1,3 +1,5 @@
+@import '../../Colors.css';
+
 .container{
     flex: 0 0 20%;
 }
@@ -18,7 +20,8 @@
 }
 
 .descripcion label:last-child{
-    color:rgb(199, 62, 62);
+    /* color:rgb(199, 62, 62); */
+    color: var(--letras1);
     font-weight: bold;
 }
 

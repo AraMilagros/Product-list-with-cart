@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import estilos from './estilos.module.css';
 import { useCarrito } from '../../context/CartCotext';
 import ItemCart from '../../components/ItemCart';
@@ -9,18 +9,26 @@ import ModalConfirm from '../../components/ModalConfirm';
 
 export default function index() {
 
-    const { carrito } = useCarrito();
-    const [ openModal, setOpenModal ] = useState(false);
+    const { carrito, openModal, setOpenModal } = useCarrito();
+    // const [openModal, setOpenModal] = useState(false);
+    const [cantidadProductos, setCantidadProductos]=useState(0);
+    const [totalPrecio, setTotalPrecio]=useState(0)
     // poner esto en un use state 
-    const totalProductos = Object.values(carrito)
-        .reduce((total, producto) => total + producto.cantidad, 0);
-    const totalPrecio = Object.values(carrito)
-        .reduce((precio, producto) => precio + (producto.precio * producto.cantidad), 0);
 
-        
+
+    useEffect(() => {
+        const tproductos = Object.values(carrito)
+            .reduce((total, producto) => total + producto.cantidad, 0);
+        const tprecio = Object.values(carrito)
+            .reduce((precio, producto) => precio + (producto.precio * producto.cantidad), 0);
+
+        setCantidadProductos(tproductos);
+        setTotalPrecio(tprecio);
+    }, [carrito, ''])
+
     return (
         <div className={estilos.container}>
-            <h2>Your Cart ({totalProductos})</h2>
+            <h2>Your Cart ({cantidadProductos})</h2>
             {Object.keys(carrito).length === 0 ? (
                 <div className={estilos.iconoEmpty}>
                     <img src={carritoVacio} alt='icon-empty-cart' />
@@ -50,10 +58,10 @@ export default function index() {
                         <img src={tree} alt='icon-carbon-neutral' />
                         <label>This is a <strong>carbon-neutral</strong> delivery</label>
                     </div>
-                    <a className={estilos.btnConfirm} onClick={()=>setOpenModal(true)}>Confirm Order</a>
+                    <a className={estilos.btnConfirm} onClick={() => setOpenModal(true)}>Confirm Order</a>
                 </>
             )}
-            {openModal && <ModalConfirm closeModal={setOpenModal} lista={carrito} total={totalPrecio} />}
+            {openModal && <ModalConfirm lista={carrito} total={totalPrecio} />}
         </div>
     )
 }

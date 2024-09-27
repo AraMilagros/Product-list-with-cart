@@ -53,10 +53,11 @@
     margin: auto;
     justify-content: center;
     cursor: pointer;
-    background: rgb(204, 83, 83);
+    background: var(--letras1);
     color: white;
+    transition: all .5s ease;
 }
 
 .btnConfirm:hover{
-    background: rgb(199, 62, 62);
+    background: var(--letras);
 }

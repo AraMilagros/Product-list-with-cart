@@ -5,9 +5,9 @@ export default function App() {
 
 
     return (
-        <>
+        <main>
             <Principal />
-        </>
+        </main>
     );
 
 

@@ -6,6 +6,7 @@ export const useCarrito = () => useContext(CarritoContext);
 
 export const CarritoProvider = ({ children }) => {
     const [carrito, setCarrito] = useState([]);
+    const [openModal, setOpenModal] = useState(false);
 
     const agregarAlCarrito = (id, cantidad, nombre, categoria, precio, imagen) => {
         setCarrito((previo) => ({
@@ -22,9 +23,13 @@ export const CarritoProvider = ({ children }) => {
         });
     }
 
+    const eliminarTodo = () => {
+        let item={}
+        setCarrito(item);
+    }
 
     return(
-        <CarritoContext.Provider value={{ carrito, agregarAlCarrito, eliminarDelCarrito }}>
+        <CarritoContext.Provider value={{ carrito, agregarAlCarrito, eliminarDelCarrito, eliminarTodo, openModal, setOpenModal }}>
             {children}
         </CarritoContext.Provider>
     );

@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import estilos from './estilos.module.css';
 // import { useCartContext } from "../../context/CartContext";
 import { useCarrito } from '../../context/CartCotext';
 const carpeta = require.context('./Mini', true);
 
 export default function index(props) {
-    const { carrito } = useCarrito();
+    const { carrito, eliminarTodo, openModal, setOpenModal } = useCarrito();
+    const [precioTotal, setPrecioTotal]=useState(0);
+    
     // const { listaItems } = useCartContext();
-    const totalPrecio = Object.values(carrito)
-    .reduce((precio, producto) => precio + (producto.precio * producto.cantidad), 0);
+    
+    useEffect(()=>{
+        let total = Object.values(carrito)
+        .reduce((precio, producto) => precio + (producto.precio * producto.cantidad), 0);
+
+        setPrecioTotal(total);
+    },[carrito, ''])
 
     return (
         <>
@@ -42,14 +49,12 @@ export default function index(props) {
                         ))
                     }
 
-                    <div className={estilos.orderTotal}>
-                        <label>Order Total</label>
-                        <label>$ {totalPrecio}</label>
-                    </div>
-
                 </div>
-
-                <a className={estilos.btnFinalizar} onClick={() => props.closeModal(false)}>Start New Order</a>
+                <div className={estilos.orderTotal}>
+                        <label>Order Total</label>
+                        <label>$ {precioTotal}</label>
+                    </div>
+                <a className={estilos.btnFinalizar} onClick={() => {setOpenModal(false), eliminarTodo()}}>Start New Order</a>
             </div>
         </>
     )
